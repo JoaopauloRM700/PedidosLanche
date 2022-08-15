@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class DetailActivity extends AppCompatActivity {
+import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBinding;
+
+ public class DetailActivity extends AppCompatActivity {
+
+    ActivityDetailBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        binding = ActivityDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
     }
 }

@@ -32,9 +32,9 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
         DBHelper helper = new DBHelper(this);
 
-        binding.insertBtn.setOnClickListener( new View.OnClickListener() {
+        binding.insertBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
                 boolean isInserted = helper.inserPedido(
                             binding.nameBox.getText().toString()

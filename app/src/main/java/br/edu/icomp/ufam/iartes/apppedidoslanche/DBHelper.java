@@ -2,10 +2,15 @@ package br.edu.icomp.ufam.iartes.apppedidoslanche;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
+import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.OrdersModel;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -22,11 +27,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE pedidos" +
-                "(      id int primary key autoincrement" +
+                "(      id integer primary key autoincrement" +
                 "   ,   nome text" +
                 "   ,   telefone text" +
-                "   ,   preco   double" +
-                "   ,   image   int" +
+                "   ,   preco   real" +
+                "   ,   image   integer" +
                 "   ,   descricao text" +
                 "   ,   nomeLanche text)"
         );
@@ -59,6 +64,24 @@ public class DBHelper extends SQLiteOpenHelper {
         else{
             return true;
         }
+    }
 
+    public ArrayList<OrdersModel> getOrders() {
+        ArrayList<OrdersModel> orders = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id,nameLanche, image, preco  FROM pedidos", null);
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()){
+                OrdersModel model = new OrdersModel();
+                model.setIdPedido(cursor.getInt(0)+"");
+                model.setSoldItemName(cursor.getString(1));
+                model.setOrderImage(cursor.getInt(2));
+                model.setValueOrder(cursor.getFloat(3)+"");
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return orders;
     }
 }

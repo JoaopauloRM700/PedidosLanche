@@ -12,6 +12,11 @@ public class OrdersModel {
         this.idPedido = idPedido;
     }
 
+    public OrdersModel() {
+
+    }
+
+
     public int getOrderImage() {
         return orderImage;
     }

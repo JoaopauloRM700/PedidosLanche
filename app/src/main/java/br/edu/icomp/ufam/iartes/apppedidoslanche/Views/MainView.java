@@ -46,7 +46,7 @@ public class MainView extends RecyclerView.Adapter<MainView.viewholder> {
 
         holder.itemView.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("image", model.getImage());

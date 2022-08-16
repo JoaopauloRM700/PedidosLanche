@@ -10,6 +10,9 @@ public class MainModel {
         this.preco = preco;
         this.descricao = descricao;
     }
+    public MainModel(){
+
+    }
 
     public int getImage() {
         return image;

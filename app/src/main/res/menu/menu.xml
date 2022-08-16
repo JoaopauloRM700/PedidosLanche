@@ -4,8 +4,10 @@
 
     <item
         android:id="@+id/orders"
-        android:icon="@drawable/pedido"
+        android:icon="@drawable/orders_icon"
+        android:title="Pedido"
+        android:visible="true"
         app:showAsAction="always"
-        android:title="Pedido" />
+        app:tint="@color/white" />
 
 </menu>

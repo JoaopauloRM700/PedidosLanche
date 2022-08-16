@@ -21,7 +21,8 @@ public class OrderActivity extends AppCompatActivity {
         binding = ActivityOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<OrdersModel> list = new ArrayList<>();
+        DBHelper helper = new DBHelper(this);
+        ArrayList<OrdersModel> list = helper.getOrders();
 
         OrdersView view = new OrdersView(list,this);
         binding.ordersRecyclerView.setAdapter(view);

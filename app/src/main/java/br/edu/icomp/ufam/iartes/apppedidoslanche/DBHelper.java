@@ -49,6 +49,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean inserPedido( String name, String telefone, double preco, int image, String descricao, String nomeLanche, int qtd ){
         SQLiteDatabase db = getReadableDatabase();
         ContentValues values = new ContentValues();
+        /*
+        * id = 0
+        * name=1
+        * telefone=2
+        * preco=3
+        * image =4
+        * descricao = 5
+        * nomeLanche = 6
+        * qtd = 7
+        * */
         values.put("nome", name);
         values.put("telefone", telefone);
         values.put("preco", preco);
@@ -69,7 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<OrdersModel> getOrders() {
         ArrayList<OrdersModel> orders = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id,nameLanche, image, preco  FROM pedidos", null);
+        Cursor cursor = db.rawQuery("SELECT id,nomeLanche, image, preco  FROM pedidos", null);
         if (cursor.moveToFirst()) {
             while (cursor.moveToNext()){
                 OrdersModel model = new OrdersModel();
@@ -77,11 +87,58 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setSoldItemName(cursor.getString(1));
                 model.setOrderImage(cursor.getInt(2));
                 model.setValueOrder(cursor.getFloat(3)+"");
+                orders.add(model);
             }
         }
 
         cursor.close();
         db.close();
         return orders;
+    }
+
+    public Cursor getOrderById(int id){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT *  FROM pedidos WHERE id = "+id, null);
+
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        return cursor;
+    }
+
+    public boolean updatePedido( String name, String telefone, double preco, int image, String descricao, String nomeLanche, int qtd, int id ){
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        /*
+         * id = 0
+         * name=1
+         * telefone=2
+         * preco=3
+         * image =4
+         * descricao = 5
+         * nomeLanche = 6
+         * qtd = 7
+         * */
+        values.put("nome", name);
+        values.put("telefone", telefone);
+        values.put("preco", preco);
+        values.put("image", image);
+        values.put("descricao", descricao);
+        values.put("nameLanche", nomeLanche);
+        values.put("qtd", qtd);
+        long row = db.update("pedidos", values, "id="+id, null);
+
+        if(row <= 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public int deletedPedido(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("pedidos", "id="+id, null);
     }
 }

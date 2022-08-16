@@ -18,11 +18,7 @@
             android:name=".OrderActivity"
             android:exported="true">
 
-            <intent-filter>
-                <action android:name="package.OtherActivity" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
 
         </activity>
 
@@ -30,11 +26,7 @@
             android:name=".DetailActivity"
             android:exported="true" >
 
-            <intent-filter>
-                <action android:name="package.OtherActivity" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
 
         </activity>
 

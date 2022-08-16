@@ -1,8 +1,10 @@
 package br.edu.icomp.ufam.iartes.apppedidoslanche.Views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import br.edu.icomp.ufam.iartes.apppedidoslanche.DetailActivity;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.MainModel;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.R;
 
@@ -33,13 +36,27 @@ public class MainView extends RecyclerView.Adapter<MainView.viewholder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull final viewholder holder, int position) {
 
         final MainModel model = list.get(position);
         holder.imageLanche.setImageResource(model.getImage());
         holder.mainName.setText(model.getNome());
         holder.preco.setText(model.getPreco());
         holder.descricao.setText(model.getDescricao());
+
+        holder.itemView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("image", model.getImage());
+                intent.putExtra("preco", model.getPreco());
+                intent.putExtra("descricao", model.getDescricao());
+                intent.putExtra("name", model.getNome());
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -59,8 +76,6 @@ public class MainView extends RecyclerView.Adapter<MainView.viewholder> {
             mainName = itemView.findViewById(R.id.name);
             preco = itemView.findViewById(R.id.valueOrder);
             descricao = itemView.findViewById(R.id.descricao);
-
-
 
         }
     }

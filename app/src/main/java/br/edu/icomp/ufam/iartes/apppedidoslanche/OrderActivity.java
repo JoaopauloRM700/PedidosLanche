@@ -24,9 +24,9 @@ public class OrderActivity extends AppCompatActivity {
         ArrayList<OrdersModel> list = new ArrayList<>();
         list.add(new OrdersModel(R.drawable.xsalada,"X-salada", "7,00","2712"));
         list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));
-        list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));
-        list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));
-        list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));
+        list.add(new OrdersModel(R.drawable.pizza,"Pizza de Mussarela G", "30,00","2712"));
+        list.add(new OrdersModel(R.drawable.xcaboquinho,"X-caboquinho", "15,00","2712"));
+        list.add(new OrdersModel(R.drawable.xtudo,"X-Tudo", "30,00","2712"));
         list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));
         list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));
         list.add(new OrdersModel(R.drawable.pizzacalabresa,"Pizza de calabresa G", "30,00","2712"));

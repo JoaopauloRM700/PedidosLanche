@@ -65,7 +65,7 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
             Cursor cursor = helper.getOrderById(id);
             int image = cursor.getInt(4);
             binding.detailImage.setImageResource(image);
-            binding.precoDetail.setText(String.format("%d", cursor.getDouble(3)));
+            binding.precoDetail.setText(String.format("%.2f", cursor.getDouble(3)));
             binding.nameLanche.setText(cursor.getString(6));
             binding.detailDescription.setText(cursor.getString(5));
 

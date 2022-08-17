@@ -101,9 +101,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getOrderById(int id){
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT *  FROM pedidos WHERE id = "+id, null);
+        Cursor cursor = db.rawQuery("SELECT *  FROM pedidos WHERE id = "+ id, null);
 
-        if (cursor!= null)
+        if (cursor != null)
             cursor.moveToFirst();
 
         return cursor;

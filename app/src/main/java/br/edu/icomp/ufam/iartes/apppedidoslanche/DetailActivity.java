@@ -23,7 +23,7 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
 
         final DBHelper helper = new DBHelper(this);
-        if (getIntent().getIntExtra("type", 0) == 2) {
+        if (getIntent().getIntExtra("type", 0) == 1) {
 
 
             final int image = getIntent().getIntExtra("image", 0);

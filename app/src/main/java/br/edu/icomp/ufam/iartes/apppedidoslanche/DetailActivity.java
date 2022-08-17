@@ -23,8 +23,7 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
 
         final DBHelper helper = new DBHelper(this);
-        if (getIntent().getIntExtra("type", 0) == 1) {
-
+        if (getIntent().getIntExtra("type", 0) == 2) {
 
 
             final int image = getIntent().getIntExtra("image", 0);
@@ -61,9 +60,9 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
         }
 
         else{
-            int id = getIntent().getIntExtra("id",0);
+            final int id = getIntent().getIntExtra("id",0);
             Cursor cursor = helper.getOrderById(id);
-            int image = cursor.getInt(4);
+            final int image = cursor.getInt(4);
             binding.detailImage.setImageResource(image);
             binding.precoDetail.setText(String.format("%.2f", cursor.getDouble(3)));
             binding.nameLanche.setText(cursor.getString(6));
@@ -74,7 +73,8 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
             binding.insertBtn.setText("Atualizar");
             binding.insertBtn.setOnClickListener(view -> {
 
-                boolean isUpdated = helper.updatePedido(    binding.nameBox.getText().toString()
+                boolean isUpdated = helper.updatePedido(
+                                        binding.nameBox.getText().toString()
                                     ,   binding.phoneBox.getText().toString()
                                     ,   Double.parseDouble(binding.precoDetail.getText().toString())
                                     ,   image

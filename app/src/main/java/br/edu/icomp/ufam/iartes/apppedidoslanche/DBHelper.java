@@ -15,11 +15,12 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.OrdersModel;
 public class DBHelper extends SQLiteOpenHelper {
 
     final static  String DB_NAME = "mydatabase.db";
-    final static int DB_VERSION = 1;
+    final static int DB_VERSION = 2;
 
 
 
     public DBHelper(@Nullable Context context) {
+
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -31,7 +32,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "   ,   nome text" +
                 "   ,   telefone text" +
                 "   ,   preco   real" +
-                "   ,   image   integer" +
+                "   ,   image   int" +
+                "   ,   quantidade   int"+
                 "   ,   descricao text" +
                 "   ,   nomeLanche text)"
         );
@@ -40,13 +42,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
         db.execSQL("DROP table if exists pedidos ");
         onCreate(db);
     }
 
-    public boolean inserPedido( String name, String telefone, double preco, int image, String descricao, String nomeLanche, int qtd ){
+    public boolean insertPedido(String name, String telefone, double preco, int image, String descricao, String nomeLanche, int quantidade ){
         SQLiteDatabase db = getReadableDatabase();
         ContentValues values = new ContentValues();
         /*
@@ -64,8 +66,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("preco", preco);
         values.put("image", image);
         values.put("descricao", descricao);
-        values.put("nameLanche", nomeLanche);
-        values.put("qtd", qtd);
+        values.put("nomeLanche", nomeLanche);
+        values.put("quantidade", quantidade);
         long id = db.insert("pedidos", null, values);
 
         if(id <= 0){
@@ -84,9 +86,9 @@ public class DBHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext()){
                 OrdersModel model = new OrdersModel();
                 model.setIdPedido(cursor.getInt(0)+"");
-                model.setSoldItemName(cursor.getString(1));
+                model.setOrderItemName(cursor.getString(1));
                 model.setOrderImage(cursor.getInt(2));
-                model.setValueOrder(cursor.getFloat(3)+"");
+                model.setValueOrder(cursor.getDouble(3)+"");
                 orders.add(model);
             }
         }
@@ -107,7 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean updatePedido( String name, String telefone, double preco, int image, String descricao, String nomeLanche, int qtd, int id ){
+    public boolean updatePedido( String name, String telefone, double preco, int image, String descricao, String nomeLanche, int quantidade, int id ){
         SQLiteDatabase db = getReadableDatabase();
         ContentValues values = new ContentValues();
         /*
@@ -118,15 +120,15 @@ public class DBHelper extends SQLiteOpenHelper {
          * image =4
          * descricao = 5
          * nomeLanche = 6
-         * qtd = 7
+         * quantidade = 7
          * */
         values.put("nome", name);
         values.put("telefone", telefone);
         values.put("preco", preco);
         values.put("image", image);
         values.put("descricao", descricao);
-        values.put("nameLanche", nomeLanche);
-        values.put("qtd", qtd);
+        values.put("nomeLanche", nomeLanche);
+        values.put("quantidade", quantidade);
         long row = db.update("pedidos", values, "id="+id, null);
 
         if(row <= 0){

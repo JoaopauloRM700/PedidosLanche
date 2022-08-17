@@ -20,8 +20,9 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
         super.onCreate(savedInstanceState);
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        final DBHelper helper = new DBHelper(this);
 
+
+        final DBHelper helper = new DBHelper(this);
         if (getIntent().getIntExtra("type", 0) == 1) {
 
 
@@ -33,20 +34,20 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
 
             binding.detailImage.setImageResource(image);
-            binding.precoDetail.setText(String.format("%d", preco));
+            binding.precoDetail.setText(String.format("%.2f", preco));
             binding.nameLanche.setText(name);
             binding.detailDescription.setText(descricao);
 
 
             binding.insertBtn.setOnClickListener((view) -> {
 
-                boolean isInserted = helper.inserPedido(
+                boolean isInserted = helper.insertPedido(
                           binding.nameBox.getText().toString()
                         , binding.phoneBox.getText().toString()
                         , preco
                         , image
-                        , name
                         , descricao
+                        , name
                         , Integer.parseInt(binding.qtd.getText().toString())
 
                 );
@@ -58,11 +59,11 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
             });
         }
+
         else{
             int id = getIntent().getIntExtra("id",0);
             Cursor cursor = helper.getOrderById(id);
             int image = cursor.getInt(4);
-
             binding.detailImage.setImageResource(image);
             binding.precoDetail.setText(String.format("%d", cursor.getDouble(3)));
             binding.nameLanche.setText(cursor.getString(6));
@@ -71,29 +72,26 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
             binding.nameBox.setText(cursor.getString(1));
             binding.phoneBox.setText(cursor.getString(2));
             binding.insertBtn.setText("Atualizar");
-            binding.insertBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            binding.insertBtn.setOnClickListener(view -> {
 
-                    boolean isUpdated = helper.updatePedido(    binding.nameBox.getText().toString()
-                                        ,   binding.phoneBox.getText().toString()
-                                        ,   Double.parseDouble(binding.precoDetail.getText().toString())
-                                        ,   image
-                                        ,   binding.detailDescription.getText().toString()
-                                        ,   binding.nameLanche.getText().toString()
-                                        ,   1
-                                        ,   id
+                boolean isUpdated = helper.updatePedido(    binding.nameBox.getText().toString()
+                                    ,   binding.phoneBox.getText().toString()
+                                    ,   Double.parseDouble(binding.precoDetail.getText().toString())
+                                    ,   image
+                                    ,   binding.detailDescription.getText().toString()
+                                    ,   binding.nameLanche.getText().toString()
+                                    ,   1
+                                    ,   id
 
-                    );
+                );
 
-                    if(isUpdated){
-                        Toast.makeText(DetailActivity.this,"Updated", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(DetailActivity.this,"Failed.", Toast.LENGTH_SHORT).show();
-                    }
-
+                if(isUpdated){
+                    Toast.makeText(DetailActivity.this,"Updated", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DetailActivity.this,"Failed.", Toast.LENGTH_SHORT).show();
+                }
+
             });
 
 

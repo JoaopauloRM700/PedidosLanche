@@ -3,11 +3,11 @@ package br.edu.icomp.ufam.iartes.apppedidoslanche.Models;
 public class OrdersModel {
 
     int orderImage;
-    String soldItemName, valueOrder, idPedido;
+    String orderItemName, valueOrder, idPedido;
 
     public OrdersModel(int orderImage, String soldItemName, String valueOrder, String idPedido) {
         this.orderImage = orderImage;
-        this.soldItemName = soldItemName;
+        this.orderItemName = soldItemName;
         this.valueOrder = valueOrder;
         this.idPedido = idPedido;
     }
@@ -25,12 +25,12 @@ public class OrdersModel {
         this.orderImage = orderImage;
     }
 
-    public String getSoldItemName() {
-        return soldItemName;
+    public String getOrderItemName() {
+        return orderItemName;
     }
 
-    public void setSoldItemName(String soldItemName) {
-        this.soldItemName = soldItemName;
+    public void setOrderItemName(String orderItemName) {
+        this.orderItemName = orderItemName;
     }
 
     public String getValueOrder() {

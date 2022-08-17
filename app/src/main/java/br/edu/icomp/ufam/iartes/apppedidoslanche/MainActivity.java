@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.MainModel;
-import br.edu.icomp.ufam.iartes.apppedidoslanche.Views.MainView;
+import br.edu.icomp.ufam.iartes.apppedidoslanche.Adapters.MainAdapter;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new MainModel(R.drawable.pizza,"Pizza de Mussarela","30.00", " É especialmente preparada com recheio generoso de linguiça calabresa de primeira qualidade, queijo muçarela e orégano. A linguiça calabresa agrega um sabor único e levemente picante à pizza. "));
 
 
-        MainView model = new MainView(list, this);
-        binding.ricyclerview.setAdapter(model);
+        MainAdapter adapter = new MainAdapter(list, this);
+        binding.ricyclerview.setAdapter(adapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.ricyclerview.setLayoutManager(layoutManager);

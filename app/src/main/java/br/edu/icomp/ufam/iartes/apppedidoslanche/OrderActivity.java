@@ -8,7 +8,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.OrdersModel;
-import br.edu.icomp.ufam.iartes.apppedidoslanche.Views.OrdersView;
+import br.edu.icomp.ufam.iartes.apppedidoslanche.Adapters.OrdersAdapter;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityOrderBinding;
 
 public class OrderActivity extends AppCompatActivity {
@@ -24,8 +24,8 @@ public class OrderActivity extends AppCompatActivity {
         DBHelper helper = new DBHelper(this);
         ArrayList<OrdersModel> list = helper.getOrders();
 
-        OrdersView view = new OrdersView(list,this);
-        binding.ordersRecyclerView.setAdapter(view);
+        OrdersAdapter adapter = new OrdersAdapter(list,this);
+        binding.ordersRecyclerView.setAdapter(adapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.ordersRecyclerView.setLayoutManager(layoutManager);

@@ -1,4 +1,4 @@
-package br.edu.icomp.ufam.iartes.apppedidoslanche.Views;
+package br.edu.icomp.ufam.iartes.apppedidoslanche.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +14,12 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.DetailActivity;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.MainModel;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.R;
 
-public class MainView extends RecyclerView.Adapter<MainView.viewholder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewholder> {
 
     ArrayList<MainModel> list ;
     Context context;
 
-    public MainView(ArrayList<MainModel> list, Context context) {
+    public MainAdapter(ArrayList<MainModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -44,9 +44,9 @@ public class MainView extends RecyclerView.Adapter<MainView.viewholder> {
 
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("image", model.getImage());
+            intent.putExtra("name", model.getNome());
             intent.putExtra("preco", model.getPreco());
             intent.putExtra("descricao", model.getDescricao());
-            intent.putExtra("name", model.getNome());
             intent.putExtra("type", 2);
             context.startActivity(intent);
 
@@ -55,6 +55,7 @@ public class MainView extends RecyclerView.Adapter<MainView.viewholder> {
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 

@@ -1,4 +1,4 @@
-package br.edu.icomp.ufam.iartes.apppedidoslanche.Views;
+package br.edu.icomp.ufam.iartes.apppedidoslanche.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,12 +21,12 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.DetailActivity;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.Models.OrdersModel;
 import br.edu.icomp.ufam.iartes.apppedidoslanche.R;
 
-public class OrdersView extends RecyclerView.Adapter<OrdersView.viewHolder> {
+public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder> {
 
     ArrayList<OrdersModel> list;
     Context context;
 
-    public OrdersView(ArrayList<OrdersModel> list, Context context) {
+    public OrdersAdapter(ArrayList<OrdersModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -45,9 +45,9 @@ public class OrdersView extends RecyclerView.Adapter<OrdersView.viewHolder> {
 
         final OrdersModel model = list.get(position);
         holder.orderImage.setImageResource(model.getOrderImage());
-        holder.orderItemName.setText(model.getSoldItemName());
-        holder.valueOrder.setText(model.getValueOrder());
+        holder.orderItemName.setText(model.getOrderItemName());
         holder.idPedido.setText(model.getIdPedido());
+        holder.valueOrder.setText(model.getValueOrder());
 
         holder.itemView.setOnClickListener((view) -> {
 
@@ -58,34 +58,31 @@ public class OrdersView extends RecyclerView.Adapter<OrdersView.viewHolder> {
 
         });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                new AlertDialog.Builder(context)
-                        .setTitle("Deletar Item")
-                        .setMessage("Deseja realmente deletar este item?")
-                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                DBHelper helper = new DBHelper(context);
-                                if(helper.deletedPedido(model.getIdPedido()) >0){
+        holder.itemView.setOnLongClickListener((view) -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Deletar Item")
+                    .setMessage("Deseja realmente deletar este item?")
+                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            DBHelper helper = new DBHelper(context);
+                            if(helper.deletedPedido(model.getIdPedido()) >0){
 
-                                    Toast.makeText(context,"Deleted", Toast.LENGTH_SHORT).show();
-
-                                }
-                                else{
-                                    Toast.makeText(context,"Error.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        })
-                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
+                                Toast.makeText(context,"Deleted", Toast.LENGTH_SHORT).show();
 
                             }
-                        }).show();
-                return false;
-            }
+                            else{
+                                Toast.makeText(context,"Error.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    })
+                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+
+                        }
+                    }).show();
+            return false;
         });
 
     }

@@ -65,11 +65,11 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
             final int image = cursor.getInt(4);
             binding.detailImage.setImageResource(image);
             binding.precoDetail.setText(String.format("%.2f", cursor.getDouble(3)));
-            binding.nameLanche.setText(cursor.getString(6));
-            binding.detailDescription.setText(cursor.getString(5));
-
+            binding.nameLanche.setText(cursor.getString(7));
+            binding.detailDescription.setText(cursor.getString(6));
             binding.nameBox.setText(cursor.getString(1));
             binding.phoneBox.setText(cursor.getString(2));
+            binding.qtd.setText(String.format("%d", cursor.getInt(5)));
             binding.insertBtn.setText("Atualizar");
             binding.insertBtn.setOnClickListener(view -> {
 
@@ -80,7 +80,7 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
                                     ,   image
                                     ,   binding.detailDescription.getText().toString()
                                     ,   binding.nameLanche.getText().toString()
-                                    ,   1
+                                    ,   Integer.parseInt(binding.qtd.getText().toString())
                                     ,   id
 
                 );

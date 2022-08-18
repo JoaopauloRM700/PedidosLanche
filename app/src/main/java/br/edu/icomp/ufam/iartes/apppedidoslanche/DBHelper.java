@@ -106,7 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         //if (cursor != null)
-        Log.i("teste","Retornou do BD: "+cursor.getCount());
+        //Log.i("teste","Retornou do BD: "+cursor.getCount());
         cursor.moveToFirst();
 
 

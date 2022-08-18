@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         list.add(new MainModel(R.drawable.xcaboquinho,"X-Caboquinho","15.00", "O x-caboquinho é um sanduíche típico da culinária do Amazonas. Consiste em um pão francês recheado com lascas de tucumã, banana pacovã madura frita, queijo coalho e manteiga."));
         list.add(new MainModel(R.drawable.xtudo,"X-Tudo","20.00", "Hambúrguer, bacon, calabresa, salsicha, ovo, queijo, alface, tomate, maionese e ketchup. * Acréscimo opcionais nos lanches*. - Bacon."));
         list.add(new MainModel(R.drawable.pizzacalabresa,"Pizza Calabresa G","30.00", " É especialmente preparada com recheio generoso de linguiça calabresa de primeira qualidade, queijo muçarela e orégano. A linguiça calabresa agrega um sabor único e levemente picante à pizza. "));
-        list.add(new MainModel(R.drawable.xtudo,"X-Tudo","20.00", "Hambúrguer, bacon, calabresa, salsicha, ovo, queijo, alface, tomate, maionese e ketchup. * Acréscimo opcionais nos lanches*. - Bacon."));
         list.add(new MainModel(R.drawable.pizza,"Pizza de Mussarela","30.00", " É especialmente preparada com recheio generoso de linguiça calabresa de primeira qualidade, queijo muçarela e orégano. A linguiça calabresa agrega um sabor único e levemente picante à pizza. "));
 
 

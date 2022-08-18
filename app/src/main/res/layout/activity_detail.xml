@@ -58,7 +58,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:text="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@color/black"
                     android:textSize="14sp"

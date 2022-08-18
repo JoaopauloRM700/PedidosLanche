@@ -2,7 +2,7 @@
     <string name="app_name">APP Pedidos Lanche</string>
     <string name="Nome">Nome</string>
     <string name="cifra">R$</string>
-    <string name="Preço">Preço</string>
+    <string name="Preço">Preço unitário</string>
     <string name="Descricao">Descricao</string>
     <string name="xsalada">X - Salada</string>
     <string name="Order" />

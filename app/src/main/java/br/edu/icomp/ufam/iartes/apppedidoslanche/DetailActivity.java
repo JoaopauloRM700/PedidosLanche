@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBinding;
@@ -13,6 +16,9 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
  public class DetailActivity extends AppCompatActivity {
 
     ActivityDetailBinding binding;
+
+     ImageView increment, decrement ;
+     int count = 1;
 
 
     @Override
@@ -22,11 +28,40 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        increment = findViewById(R.id.addIcon);
+        decrement = findViewById(R.id.subtractIcon);
+
+        binding.qtd.setText(""+count);
+
+        //if(Integer.parseInt(binding.qtd.getText().toString()) >=1 ) {
+
+        increment.setOnClickListener((view) -> {
+            count++;
+            binding.qtd.setText("" + count);
+        });
+
+
+
+        decrement.setOnClickListener((view) -> {
+            if(count<=1) count = 1;
+            else
+                count--;
+            binding.qtd.setText("" + count);
+        });
+
+
+
+
+
+
+
+
+
 
         final DBHelper helper = new DBHelper(this);
         if (getIntent().getIntExtra("type", 0) == 1) {
 
-            Log.i("teste","PRECO:"+getIntent().getStringExtra("preco")+"TIPO "+getIntent().getIntExtra("type",0));
+            //Log.i("teste","PRECO:"+getIntent().getStringExtra("preco")+"TIPO "+getIntent().getIntExtra("type",0));
 
 
             final int image = getIntent().getIntExtra("image", 0);
@@ -35,10 +70,12 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
             final String descricao = getIntent().getStringExtra("descricao");
 
 
+
             binding.detailImage.setImageResource(image);
             binding.precoDetail.setText(String.format("%.2f", preco));
             binding.nameLanche.setText(name);
             binding.detailDescription.setText(descricao);
+
 
 
             binding.insertBtn.setOnClickListener((view) -> {
@@ -64,7 +101,7 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
         else{
 
-            Log.i("teste","PRECO2:"+getIntent().getStringExtra("preco")+"TIPO"+getIntent().getIntExtra("type",0));
+            //Log.i("teste","PRECO2:"+getIntent().getStringExtra("preco")+"TIPO"+getIntent().getIntExtra("type",0));
 
             final int id = getIntent().getIntExtra("id",0);
             Cursor cursor = helper.getOrderById(id);

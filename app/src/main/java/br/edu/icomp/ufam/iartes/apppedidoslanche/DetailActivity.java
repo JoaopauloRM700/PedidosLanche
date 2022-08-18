@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
         final DBHelper helper = new DBHelper(this);
         if (getIntent().getIntExtra("type", 0) == 1) {
+
+            Log.i("teste","PRECO:"+getIntent().getStringExtra("preco")+"TIPO "+getIntent().getIntExtra("type",0));
 
 
             final int image = getIntent().getIntExtra("image", 0);
@@ -60,6 +63,9 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
         }
 
         else{
+
+            Log.i("teste","PRECO2:"+getIntent().getStringExtra("preco")+"TIPO"+getIntent().getIntExtra("type",0));
+
             final int id = getIntent().getIntExtra("id",0);
             Cursor cursor = helper.getOrderById(id);
             final int image = cursor.getInt(4);

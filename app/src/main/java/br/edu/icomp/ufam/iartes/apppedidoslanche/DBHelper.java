@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -99,12 +100,15 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getOrderById(int id){
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT *  FROM pedidos WHERE id = "+ id, null);
+        Log.i("teste","Procurando ID do BD: "+id);
 
-        if (cursor != null)
-            cursor.moveToFirst();
+
+        //if (cursor != null)
+        Log.i("teste","Retornou do BD: "+cursor.getCount());
+        cursor.moveToFirst();
+
 
         return cursor;
     }

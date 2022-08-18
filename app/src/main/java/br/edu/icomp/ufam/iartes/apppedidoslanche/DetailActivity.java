@@ -35,23 +35,6 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
 
         //if(Integer.parseInt(binding.qtd.getText().toString()) >=1 ) {
 
-        increment.setOnClickListener((view) -> {
-            count++;
-            binding.qtd.setText("" + count);
-        });
-
-
-
-        decrement.setOnClickListener((view) -> {
-            if(count<=1) count = 1;
-            else
-                count--;
-            binding.qtd.setText("" + count);
-        });
-
-
-
-
 
 
 
@@ -62,6 +45,21 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
         if (getIntent().getIntExtra("type", 0) == 1) {
 
             //Log.i("teste","PRECO:"+getIntent().getStringExtra("preco")+"TIPO "+getIntent().getIntExtra("type",0));
+
+
+            increment.setOnClickListener((view) -> {
+                count++;
+                binding.qtd.setText("" + count);
+            });
+
+
+
+            decrement.setOnClickListener((view) -> {
+                if(count<=1) count = 1;
+                else
+                    count--;
+                binding.qtd.setText("" + count);
+            });
 
 
             final int image = getIntent().getIntExtra("image", 0);
@@ -100,6 +98,20 @@ import br.edu.icomp.ufam.iartes.apppedidoslanche.databinding.ActivityDetailBindi
         }
 
         else{
+
+            increment.setOnClickListener((view) -> {
+                count++;
+                binding.qtd.setText("" + count);
+            });
+
+
+
+            decrement.setOnClickListener((view) -> {
+                if(count<=1) count = 1;
+                else
+                    count--;
+                binding.qtd.setText("" + count);
+            });
 
             //Log.i("teste","PRECO2:"+getIntent().getStringExtra("preco")+"TIPO"+getIntent().getIntExtra("type",0));
 
